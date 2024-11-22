@@ -1,10 +1,12 @@
 import { Request, Response } from 'express'
 import { orderService } from './order.service'
 
+// order cars
 const orderCars = async (req: Request, res: Response) => {
   try {
     const orderData = req.body
 
+    //if no data is provided
     if (Object.keys(orderData).length === 0) {
       res.status(400).json({
         success: false,
@@ -13,15 +15,14 @@ const orderCars = async (req: Request, res: Response) => {
       return
     }
 
+    // order a car from database
     const { result, error } = await orderService.orderACarFromDB(orderData)
 
+    // if order is not successful
     if (!result) {
       res.status(400).json({
         success: false,
-        message:
-          'Order is not created. ' +
-          (error == 'ValidationError' ? 'Please provide valid data' : ''),
-        error,
+        message: error,
       })
     } else {
       res.status(200).json({
@@ -38,10 +39,13 @@ const orderCars = async (req: Request, res: Response) => {
   }
 }
 
+// calculate revenue from all orders
 const calculateRevenue = async (req: Request, res: Response) => {
   try {
+    // calculate revenue from database
     const { result, error } = await orderService.calculateRevenueFromDB()
 
+    // if not order is found
     if (!result) {
       res.status(400).json({
         success: false,

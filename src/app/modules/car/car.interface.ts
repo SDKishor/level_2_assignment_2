@@ -1,5 +1,6 @@
 export type TCarCategory = 'Sedan' | 'SUV' | 'Truck' | 'Coupe' | 'Convertible'
 
+// Car interface
 export interface ICar {
   brand: string
   model: string

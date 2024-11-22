@@ -2,6 +2,7 @@ import { CarModel } from '../car/car.model'
 import { IOrder, IRevenue } from './order.interface'
 import { OrderModel } from './order.model'
 
+// order a car from database
 const orderACarFromDB = async (
   orderData: IOrder,
 ): Promise<{ error: null | string; result: IOrder | null }> => {
@@ -38,7 +39,7 @@ const orderACarFromDB = async (
     return { error: null, result }
   } catch (error: unknown) {
     if (error instanceof Error) {
-      return { error: error.name, result: null }
+      return { error: error.message, result: null }
     }
     console.log({
       err: error as Error,
@@ -48,12 +49,13 @@ const orderACarFromDB = async (
   }
 }
 
+// calculate revenue from database
 const calculateRevenueFromDB = async (): Promise<{
   error: null | string
   result: IRevenue | null
 }> => {
   try {
-    // finding total revenue
+    // finding total revenue from database
     const result = await OrderModel.aggregate([
       {
         $group: {

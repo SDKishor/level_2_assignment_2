@@ -1,10 +1,12 @@
 import { ICar } from './car.interface'
 import { CarModel } from './car.model'
 
+// create car into database
 const createCarIntoDB = async (
   cardata: ICar,
 ): Promise<{ error: null | string; result: ICar | null }> => {
   try {
+    // create car
     const result = await CarModel.create(cardata)
     return { error: null, result }
   } catch (error: unknown) {
@@ -13,17 +15,19 @@ const createCarIntoDB = async (
       stack: (error as Error).stack,
     })
     if (error instanceof Error) {
-      return { error: error.name, result: null }
+      return { error: error.message, result: null }
     }
     return { error: 'Error creating car into database', result: null }
   }
 }
 
+// get all cars from database
 const getAllCarFromDB = async (): Promise<{
   error: null | string
   result: ICar[] | null
 }> => {
   try {
+    // get all cars
     const result = await CarModel.find({})
     return { error: null, result }
   } catch (error: unknown) {
@@ -35,10 +39,12 @@ const getAllCarFromDB = async (): Promise<{
   }
 }
 
+// get single car from database
 const getSingleCarFromDB = async (
   id: string,
 ): Promise<{ error: null | string; result: ICar | null }> => {
   try {
+    // get single car
     const result = await CarModel.findById(id)
     return { error: null, result }
   } catch (error: unknown) {
@@ -50,11 +56,13 @@ const getSingleCarFromDB = async (
   }
 }
 
+// update car into database
 const updateCarIntoDB = async (
   id: string,
   cardata: ICar,
 ): Promise<{ error: null | string; result: ICar | null }> => {
   try {
+    // update car
     const result = await CarModel.findOneAndUpdate({ _id: id }, cardata, {
       new: true,
       runValidators: true,
@@ -69,10 +77,12 @@ const updateCarIntoDB = async (
   }
 }
 
+// delete car from database
 const deleteCarFromDB = async (
   id: string,
 ): Promise<{ error: null | string; result: ICar | null }> => {
   try {
+    // delete car
     const result = await CarModel.findByIdAndDelete(id)
     return { error: null, result }
   } catch (error: unknown) {

@@ -13,6 +13,7 @@ app.use('/api/cars', carRoutes)
 
 app.use('/api/orders', orderRoutes)
 
+// health check
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!')
 })

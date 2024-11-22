@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { ICar } from './car.interface'
 
+// Car schema
 const carSchema = new Schema<ICar>(
   {
     brand: {
@@ -36,7 +37,7 @@ const carSchema = new Schema<ICar>(
     },
     inStock: {
       type: Boolean,
-      required: [true, 'inStock is required'], // inStock is required
+      required: [true, 'inStock is required'],
     },
   },
   {
@@ -44,4 +45,5 @@ const carSchema = new Schema<ICar>(
   },
 )
 
+// Export the model
 export const CarModel = model<ICar>('Car', carSchema)

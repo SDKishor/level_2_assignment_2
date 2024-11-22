@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongoose'
 
+// Order interface
 export interface IOrder {
   email: string
   car: ObjectId
@@ -7,6 +8,7 @@ export interface IOrder {
   totalPrice: number
 }
 
+// Revenue interface
 export interface IRevenue {
   _id: null
   totalRevenue: number
