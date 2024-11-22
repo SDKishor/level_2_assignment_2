@@ -5,38 +5,38 @@ const carSchema = new Schema<ICar>(
   {
     brand: {
       type: String,
-      required: true,
+      required: [true, 'Brand is required'],
     },
     model: {
       type: String,
-      required: true,
+      required: [true, 'Model is required'],
     },
     year: {
       type: Number,
-      required: true,
+      required: [true, 'Year is required'],
     },
     price: {
       type: Number,
-      required: true,
-      min: 0, // Price can't be negative
+      required: [true, 'Price is required'],
+      min: [0, "Price can't be negative"], // Price can't be negative
     },
     category: {
       type: String,
       enum: ['Sedan', 'SUV', 'Truck', 'Coupe', 'Convertible'], // Restrict to specific values
-      required: true,
+      required: [true, 'Category is required'],
     },
     description: {
       type: String,
-      required: true,
+      required: [true, 'Description is required'],
     },
     quantity: {
       type: Number,
-      required: true,
-      min: 0, // Quantity can't be negative
+      required: [true, 'Quantity is required'],
+      min: [0, "Quantity can't be negative"], // Quantity can't be negative
     },
     inStock: {
       type: Boolean,
-      required: true, // inStock is required
+      required: [true, 'inStock is required'], // inStock is required
     },
   },
   {
